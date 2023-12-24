@@ -29,5 +29,10 @@ namespace _01_LampshadeQuery.Query
                 Slug = x.Slug
             }).AsNoTracking().ToList();
         }
+
+        public List<ProductCategoryQueryModel> GetProductCategoriesWithProducts()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
