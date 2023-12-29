@@ -26,7 +26,7 @@ namespace ShopManagement.Domain.ProductAgg
         public string MetaDescription { get; private set; }
         public ProductCategory Category { get; private set; }
         public List<ProductPicture> ProductPictures { get; private set; }
-
+        //public List<Comment> Comments { get; private set; }
         public Product(string name, string code, string shortDescription, string description,
         string picture, string pictureAlt, string pictureTitle, long categoryId, string slug,
         string keywords, string metaDescription)
