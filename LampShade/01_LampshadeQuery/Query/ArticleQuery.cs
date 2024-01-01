@@ -19,6 +19,34 @@ namespace _01_LampshadeQuery.Query
             _context = context;
         }
 
+        public ArticleQueryModel GetArticleDetails(string slug)
+        {
+            var article = _context.Articles
+               .Include(x => x.Category)
+               .Where(x => x.PublishDate <= DateTime.Now)
+               .Select(x => new ArticleQueryModel
+               {
+                   Title = x.Title,
+                   CategoryName = x.Category.Name,
+                   CategorySlug = x.Category.Slug,
+                   Slug = x.Slug,
+                   CanonicalAddress = x.CanonicalAddress,
+                   Description = x.Description,
+                   Keywords = x.Keywords,
+                   MetaDescription = x.MetaDescription,
+                   Picture = x.Picture,
+                   PictureAlt = x.PictureAlt,
+                   PictureTitle = x.PictureTitle,
+                   PublishDate = x.PublishDate.ToFarsi(),
+                   ShortDescription = x.ShortDescription,
+               }).FirstOrDefault(x => x.Slug == slug);
+
+            if (!string.IsNullOrWhiteSpace(article.Keywords))
+                article.KeywordList = article.Keywords.Split(",").ToList();
+
+            return article;
+        }
+
         public List<ArticleQueryModel> LatestArticles()
         {
             return _context.Articles
