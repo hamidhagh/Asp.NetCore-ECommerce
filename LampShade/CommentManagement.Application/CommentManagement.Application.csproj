@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CommentManagement.Application.Contracts\CommentManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="..\CommentManagement.Domain\CommentManagement.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

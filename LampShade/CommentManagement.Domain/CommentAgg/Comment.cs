@@ -11,20 +11,31 @@ namespace CommentManagement.Domain.CommentAgg
 {
     public class Comment : EntityBase
     {
-        public string Name { get; private set; }
-        public string Email { get; private set; }
-        public string Message { get; private set; }
+        public string Name { get; }
+        public string Email { get; }
+        public string Website { get; }
+        public string Message { get; }
         public bool IsConfirmed { get; private set; }
         public bool IsCanceled { get; private set; }
-        public long ProductId { get; private set; }
-        public Product Product { get; private set; }
+        public long OwnerRecordId { get; }
+        public int Type { get; }
+        public long ParentId { get; }
+        public Comment Parent { get; private set; }
 
-        public Comment(string name, string email, string message, long productId)
+        protected Comment()
+        {
+        }
+
+        public Comment(string name, string email, string website, string message, long ownerRecordId, int type,
+        long parentId)
         {
             Name = name;
             Email = email;
+            Website = website;
             Message = message;
-            ProductId = productId;
+            OwnerRecordId = ownerRecordId;
+            Type = type;
+            ParentId = parentId;
         }
 
         public void Confirm()
