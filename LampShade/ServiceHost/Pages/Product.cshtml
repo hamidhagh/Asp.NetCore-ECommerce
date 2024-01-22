@@ -133,8 +133,8 @@
                                         <p class="single-grid-product__price" style="direction: rtl">
                                             @if (Model.Product.HasDiscount)
                                             {
-                                                <span class="main-price discounted">@Model.Product.Price تومان</span>
-                                                <span class="discounted-price">@Model.Product.PriceWithDiscount تومان</span>
+                                                <span class="discounted-price">@Model.Product.Price تومان</span>
+                                                <span class="main-price discounted">@Model.Product.PriceWithDiscount تومان</span>
                                             }
                                             else
                                             {
@@ -216,13 +216,9 @@
                                                  role="tablist">
                                                 <a class="nav-item nav-link active" id="description-tab"
                                                    data-toggle="tab" href="#product-description" role="tab"
-                                                   aria-selected="true">
-                                                    توضیحات
-                                                </a>
+                                                   aria-selected="true">توضیحات</a>
                                                 <a class="nav-item nav-link" id="review-tab" data-toggle="tab"
-                                                   href="#review" role="tab" aria-selected="false">
-                                                    نظرات (@Model.Product.Comments.Count)
-                                                </a>
+                                                   href="#review" role="tab" aria-selected="false">نظرات (@Model.Product.Comments.Count)</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
