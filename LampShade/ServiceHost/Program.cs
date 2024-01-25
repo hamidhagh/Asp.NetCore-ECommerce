@@ -5,9 +5,11 @@ using BlogManagement.Infrastructure.Configuration;
 using CommentManagement.Infrastructure.Configuration;
 using DiscountManagement.Configuration;
 using InventoryManagement.Infrastructure.Configuration;
+using InventoryManagement.Presentation.Api;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ServiceHost;
 using ShopManagement.Configuration;
+using ShopManagement.Presentation.Api;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 
@@ -61,6 +63,14 @@ builder.Services.AddAuthorization(options =>
 });
 
 
+
+builder.Services.AddCors(options => options.AddPolicy("MyPolicy", builder =>
+    builder
+        .WithOrigins("https://localhost:5002")
+        .AllowAnyHeader()
+        .AllowAnyMethod()));
+
+
 builder.Services.AddRazorPages()
     .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
     .AddRazorPagesOptions(options =>
@@ -69,7 +79,10 @@ builder.Services.AddRazorPages()
         options.Conventions.AuthorizeAreaFolder("Administration", "/Shop", "Shop");
         options.Conventions.AuthorizeAreaFolder("Administration", "/Discounts", "Discount");
         options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
-    });
+    })
+    .AddApplicationPart(typeof(ProductController).Assembly)
+    .AddApplicationPart(typeof(InventoryController).Assembly)
+    .AddNewtonsoftJson();
 
 var app = builder.Build();
 
@@ -93,7 +106,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseCors("MyPolicy");
+
 app.MapRazorPages();
 app.MapDefaultControllerRoute();
+app.MapControllers();
 
 app.Run();
