@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Application;
+using _0_Framework.Application.Sms;
 using Microsoft.Extensions.Configuration;
 using ShopManagement.Application.Contracts.Order;
 using ShopManagement.Domain.OrderAgg;
@@ -16,19 +17,19 @@ namespace ShopManagement.Application
         private readonly IAuthHelper _authHelper;
         private readonly IConfiguration _configuration;
         private readonly IOrderRepository _orderRepository;
-        //private readonly IShopAccountAcl _shopAccountAcl;
+        private readonly IShopAccountAcl _shopAccountAcl;
         private readonly IShopInventoryAcl _shopInventoryAcl;
-        //private readonly ISmsService _smsService;
+        private readonly ISmsService _smsService;
 
         public OrderApplication(IOrderRepository orderRepository, IAuthHelper authHelper, IConfiguration configuration,
-            IShopInventoryAcl shopInventoryAcl)//, ISmsService smsService, IShopAccountAcl shopAccountAcl)
+            IShopInventoryAcl shopInventoryAcl, ISmsService smsService, IShopAccountAcl shopAccountAcl)
         {
             _orderRepository = orderRepository;
             _authHelper = authHelper;
             _configuration = configuration;
             _shopInventoryAcl = shopInventoryAcl;
-            //_smsService = smsService;
-            //_shopAccountAcl = shopAccountAcl;
+            _smsService = smsService;
+            _shopAccountAcl = shopAccountAcl;
         }
 
         public long PlaceOrder(Cart cart)
