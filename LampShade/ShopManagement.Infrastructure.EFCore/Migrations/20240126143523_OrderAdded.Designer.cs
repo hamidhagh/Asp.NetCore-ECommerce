@@ -12,7 +12,7 @@ using ShopManagement.Infrastructure.EFCore;
 namespace ShopManagement.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20240124113658_OrderAdded")]
+    [Migration("20240126143523_OrderAdded")]
     partial class OrderAdded
     {
         /// <inheritdoc />

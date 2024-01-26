@@ -29,7 +29,7 @@ namespace AccountManagement.Domain.AccountAgg
             RoleId = roleId;
 
             if (roleId == 0)
-                RoleId = 2;
+                RoleId = 4;
 
             ProfilePhoto = profilePhoto;
         }

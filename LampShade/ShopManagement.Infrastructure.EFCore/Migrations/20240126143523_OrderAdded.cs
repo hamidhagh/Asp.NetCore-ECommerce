@@ -24,7 +24,7 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                     PayAmount = table.Column<double>(type: "float", nullable: false),
                     IsPaid = table.Column<bool>(type: "bit", nullable: false),
                     IsCanceled = table.Column<bool>(type: "bit", nullable: false),
-                    IssueTrackingNo = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
+                    IssueTrackingNo = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: true),
                     RefId = table.Column<long>(type: "bigint", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -32,6 +32,8 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                 });
+
+            
 
             migrationBuilder.CreateTable(
                 name: "OrderItems",
@@ -57,10 +59,13 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            
+
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
                 column: "OrderId");
+
         }
 
         /// <inheritdoc />
@@ -71,6 +76,7 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
+
         }
     }
 }
