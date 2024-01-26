@@ -19,13 +19,13 @@ namespace CommentManagement.Infrastructure.EFCore.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    Website = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Website = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     Message = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     IsConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     IsCanceled = table.Column<bool>(type: "bit", nullable: false),
                     OwnerRecordId = table.Column<long>(type: "bigint", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
-                    ParentId = table.Column<long>(type: "bigint", nullable: false),
+                    ParentId = table.Column<long>(type: "bigint", nullable: false, defaultValue: 0L),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

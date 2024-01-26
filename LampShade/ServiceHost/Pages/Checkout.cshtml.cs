@@ -1,4 +1,4 @@
-using _0_Framework.Application.ZarinPal;
+ï»¿using _0_Framework.Application.ZarinPal;
 using _0_Framework.Application;
 using _01_LampshadeQuery.Contracts;
 using _01_LampshadeQuery.Contracts.Product;
@@ -61,7 +61,7 @@ namespace ServiceHost.Pages
             {
                 var paymentResponse = _zarinPalFactory.CreatePaymentRequest(
                     cart.PayAmount.ToString(CultureInfo.InvariantCulture), "", "",
-                    "ÎÑ?Ï ÇÒ ÏÑÇå áæÇÒã ÎÇä? æ Ï˜æÑ?", orderId);
+                    "Ø®Ø±?Ø¯ Ø§Ø² Ø¯Ø±Ú¯Ø§Ù‡ Ù„ÙˆØ§Ø²Ù… Ø®Ø§Ù†Ú¯? Ùˆ Ø¯Ú©ÙˆØ±?", orderId);
 
                 return Redirect(
                     $"https://{_zarinPalFactory.Prefix}.zarinpal.com/pg/StartPay/{paymentResponse.Authority}");
@@ -70,7 +70,7 @@ namespace ServiceHost.Pages
             var paymentResult = new PaymentResult();
             return RedirectToPage("/PaymentResult",
                 paymentResult.Succeeded(
-                    "ÓİÇÑÔ ÔãÇ ÈÇ ãæİŞ?Ê ËÈÊ ÔÏ. Ó ÇÒ ÊãÇÓ ˜ÇÑÔäÇÓÇä ãÇ æ ÑÏÇÎÊ æÌå¡ ÓİÇÑÔ ÇÑÓÇá ÎæÇåÏ ÔÏ.", null));
+                    "Ø³ÙØ§Ø±Ø´ Ø´Ù…Ø§ Ø¨Ø§ Ù…ÙˆÙÙ‚?Øª Ø«Ø¨Øª Ø´Ø¯. Ù¾Ø³ Ø§Ø² ØªÙ…Ø§Ø³ Ú©Ø§Ø±Ø´Ù†Ø§Ø³Ø§Ù† Ù…Ø§ Ùˆ Ù¾Ø±Ø¯Ø§Ø®Øª ÙˆØ¬Ù‡ØŒ Ø³ÙØ§Ø±Ø´ Ø§Ø±Ø³Ø§Ù„ Ø®ÙˆØ§Ù‡Ø¯ Ø´Ø¯.", null));
         }
 
         public IActionResult OnGetCallBack([FromQuery] string authority, [FromQuery] string status,
@@ -86,12 +86,12 @@ namespace ServiceHost.Pages
             {
                 var issueTrackingNo = _orderApplication.PaymentSucceeded(oId, verificationResponse.RefID);
                 Response.Cookies.Delete("cart-items");
-                result = result.Succeeded("ÑÏÇÎÊ ÈÇ ãæİŞ?Ê ÇäÌÇã ÔÏ.", issueTrackingNo);
+                result = result.Succeeded("Ù¾Ø±Ø¯Ø§Ø®Øª Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø§Ù†Ø¬Ø§Ù… Ø´Ø¯.", issueTrackingNo);
                 return RedirectToPage("/PaymentResult", result);
             }
 
             result = result.Failed(
-                "ÑÏÇÎÊ ÈÇ ãæİŞ?Ê ÇäÌÇã äÔÏ. ÏÑÕæÑÊ ˜ÓÑ æÌå ÇÒ ÍÓÇÈ¡ ãÈáÛ ÊÇ 24 ÓÇÚÊ Ï?Ñ Èå ÍÓÇÈ ÔãÇ ÈÇÒÑÏÇäÏå ÎæÇåÏ ÔÏ.");
+                "Ù¾Ø±Ø¯Ø§Ø®Øª Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø§Ù†Ø¬Ø§Ù… Ù†Ø´Ø¯. Ø¯Ø±ØµÙˆØ±Øª Ú©Ø³Ø± ÙˆØ¬Ù‡ Ø§Ø² Ø­Ø³Ø§Ø¨ØŒ Ù…Ø¨Ù„Øº ØªØ§ 24 Ø³Ø§Ø¹Øª Ø¯?Ú¯Ø± Ø¨Ù‡ Ø­Ø³Ø§Ø¨ Ø´Ù…Ø§ Ø¨Ø§Ø²Ú¯Ø±Ø¯Ø§Ù†Ø¯Ù‡ Ø®ÙˆØ§Ù‡Ø¯ Ø´Ø¯.");
             return RedirectToPage("/PaymentResult", result);
         }
     }
