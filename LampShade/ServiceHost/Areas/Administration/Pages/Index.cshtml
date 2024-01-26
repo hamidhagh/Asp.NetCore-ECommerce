@@ -1,8 +1,15 @@
 ﻿@page
+@using Newtonsoft.Json
 @model Areas.Administration.Pages.IndexModel
 @{
     ViewData["Title"] = "صفحه اصلی";
 }
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title">داشبورد گزارشات</h4>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-sm-12">
@@ -142,3 +149,61 @@
     </div>
 
 </div>
+
+@section Scripts {
+    <script>
+        const lineChartDiv = document.getElementById("line");
+        const data = @Html.Raw(JsonConvert.SerializeObject(Model.BarLineDataSet));
+        const lineChart = new Chart(lineChartDiv,
+            {
+                type: "line",
+                data: {
+                    labels: ["مهر", "آبان", "آذر", " دی", "بهمن"],
+                    datasets: data
+                },
+                options: {
+                    elements: {
+                        bar: {
+                            borderWidth: 1
+                        }
+                    }
+                }
+            });
+
+        const barChartDiv = document.getElementById("bar");
+        const barChart = new Chart(barChartDiv,
+            {
+                type: "bar",
+                data: {
+                    labels: ["مهر", "آبان", "آذر", " دی", "بهمن"],
+                    datasets: data
+                },
+                options: {
+                    elements: {
+                        bar: {
+                            borderWidth: 1
+                        }
+                    }
+                }
+            });
+
+
+        const doughnutChartDiv = document.getElementById("doughnut");
+        const doughnutData = @Html.Raw(JsonConvert.SerializeObject(Model.DoughnutDataSet));
+        const doughnutChart = new Chart(doughnutChartDiv,
+            {
+                type: "doughnut",
+                data: {
+                    labels: ["Iphone 12", "Iphone 11", "Mac Book Pro", "IPad", "Apple Watch"],
+                    datasets: [doughnutData]
+                },
+                options: {
+                    elements: {
+                        bar: {
+                            borderWidth: 1
+                        }
+                    }
+                }
+            });
+    </script>
+}
