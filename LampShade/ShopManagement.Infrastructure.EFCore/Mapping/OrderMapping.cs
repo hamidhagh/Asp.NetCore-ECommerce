@@ -15,7 +15,7 @@ namespace ShopManagement.Infrastructure.EFCore.Mapping
         {
             builder.ToTable("Orders");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.IssueTrackingNo).HasMaxLength(8);
+            builder.Property(x => x.IssueTrackingNo).HasMaxLength(8).IsRequired(false);
 
             builder.Property(x => x.AccountId);
             builder.Property(x => x.PaymentMethod);

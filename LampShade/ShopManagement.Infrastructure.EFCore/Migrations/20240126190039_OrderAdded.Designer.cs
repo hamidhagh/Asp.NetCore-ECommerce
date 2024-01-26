@@ -12,7 +12,7 @@ using ShopManagement.Infrastructure.EFCore;
 namespace ShopManagement.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20240126143523_OrderAdded")]
+    [Migration("20240126190039_OrderAdded")]
     partial class OrderAdded
     {
         /// <inheritdoc />
@@ -49,7 +49,6 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("IssueTrackingNo")
-                        .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
 

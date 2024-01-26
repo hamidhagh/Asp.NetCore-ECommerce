@@ -34,7 +34,6 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                 });
 
             
-
             migrationBuilder.CreateTable(
                 name: "OrderItems",
                 columns: table => new
@@ -59,8 +58,6 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            
-
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
@@ -76,7 +73,6 @@ namespace ShopManagement.Infrastructure.EFCore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
-
         }
     }
 }
